@@ -34,7 +34,9 @@ dataSource.initialize().then(() => {
     seedData();
   }
 
-  app.listen(PORT || 3001, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+  const _port = PORT || 3001
+
+  app.listen(_port, () => {
+    console.log(`Server is running on http://localhost:${_port}`);
   });
 }).catch((err: Error) => console.error(err));

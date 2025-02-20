@@ -69,6 +69,7 @@ function App() {
         <div className="links flex-row">
           {employerData?.candidate.socials.map((social, idx: number) => <a key={idx} rel="noreferrer" href={social.link} target="_blank">{social.title}</a>)}
         </div>
+        <img className="profile" src="profile.jpg" alt="profile" />
         <section className="chat flex-col">
           <div className="chat__convo flex-col">
             {convo.map((message, idx) => (

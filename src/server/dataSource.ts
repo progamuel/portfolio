@@ -8,6 +8,7 @@ const {
     DB_PORT,
     DB_USERNAME,
     DB_PASSWORD,
+    NODE_ENV,
 } = process.env;
 
 if (!DB_ID || !DB_HOST || !DB_PORT || !DB_USERNAME || !DB_PASSWORD) {
@@ -26,10 +27,10 @@ const postgresOptions: DataSourceOptions = {
     password: DB_PASSWORD,
     synchronize: false,
     logging: false,
-    dropSchema: false,
+    dropSchema: NODE_ENV !== 'local' && false,
     entities: entitiesPaths,
     migrations: migrationsPaths,
-    ssl: {
+    ssl: NODE_ENV !== 'local' && {
         rejectUnauthorized: false,
     },
 };
