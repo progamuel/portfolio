@@ -1,0 +1,118 @@
+.EditPage {
+  form {
+    width: 60%;
+    gap: .5em;
+  }
+
+  .form__header {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+
+  .form__header__inner {
+    gap: .5em;
+    display: flex;
+    width: 60%;
+    padding-bottom: 1em;
+  }
+
+  .form__header__inner input {
+    width: 100%;
+  }
+
+  .form__section {
+    padding: 1em;
+    background-color: #222;
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    border-radius: 5px;
+  }
+
+  form>.form__section:nth-of-type(2) {
+    margin-top: 9em;
+  }
+
+  .form__section__inner {
+    gap: .5em;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    border-radius: 5px;
+    background-color: #333;
+  }
+
+  .form__section__inner>textarea {
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 70px;
+  }
+
+  .form__section__inner>textarea:first-of-type {
+    min-height: unset;
+  }
+
+  .form__section__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  form button.add-btn {
+    background-color: transparent;
+    align-self: center;
+    color: lightgreen;
+    padding: 0;
+    width: unset;
+  }
+
+  form button.delete-btn {
+    background-color: transparent;
+    color: lightcoral;
+    padding: 0;
+    width: unset;
+  }
+
+  form button {
+    font-weight: bold;
+    border: none;
+  }
+
+  form button[type="submit"] {
+    padding: 1em .5em;
+    color: black;
+    border-radius: 5px;
+    border: none;
+    background-color: greenyellow;
+  }
+
+  form button:hover {
+    cursor: pointer;
+  }
+
+  input[type="password"] {
+    background-color: #eee;
+    border: none;
+    border-radius: 5px;
+    padding: 1em;
+  }
+
+  h2 {
+    text-align: center;
+    color: #eee;
+  }
+
+  h5 {
+    margin: 0;
+    text-align: center;
+  }
+
+  label {
+    font-size: 0.75rem;
+  }
+}

@@ -1,61 +1,50 @@
 import fs from "fs/promises";
 import path from "path";
 import { Employer } from "../entity/Employer";
-import { TextThesis } from "../entity/TextThesis";
-import { TextFAQ } from "../entity/TextFAQ";
 import { Equal } from "typeorm";
-import { Candidate } from "../entity/Candidate";
 
 export const seedData = async () => {
-    try {
-        const filePath = path.resolve(__dirname, "seed.json");
-        const fileContent = await fs.readFile(filePath, "utf8");
-        const data = JSON.parse(fileContent);
+  try {
+    const filePath = path.resolve(__dirname, "seed.json");
+    const fileContent = await fs.readFile(filePath, "utf8");
+    const data = JSON.parse(fileContent);
 
-        data.forEach(async (employerData: any) => {
-            const { subdomain, name, candidate, botOptions, textTitle, textIntro, thesisTexts, FAQTexts } = employerData;
+    data.forEach(async (employerData: any) => {
+      const { subdomain, name, style, candidate, botOptions, textTitle, textIntro, thesisTexts, faqTexts } = employerData;
 
-            if (!subdomain || !name || !candidate || !botOptions || !textTitle || !textIntro || !thesisTexts || !FAQTexts) {
-                throw new Error("Invalid data format");
-            };
+      if (!subdomain || !name || !style || !candidate || !botOptions || !textTitle || !textIntro || !thesisTexts || !faqTexts) {
+        throw new Error("Invalid data format");
+      };
 
-            const existingEmployee = await Employer.findOne({ where: { subdomain: Equal(subdomain) } });
+      const existingEmployer = await Employer.findOne({ where: { subdomain: Equal(subdomain) } });
 
-            if (existingEmployee) {
-                await existingEmployee.remove()
-            }
+      if (existingEmployer) {
+        await existingEmployer.remove();
+      }
 
-            const employer = Employer.create({
-                subdomain,
-                name,
-                candidate: Candidate.create({
-                    name: candidate.name,
-                    socials: JSON.stringify(candidate.socials),
-                }),
-                botOptions: JSON.stringify({
-                    name: botOptions.name,
-                    completePrePrompt: `${botOptions.prePromptStatic} ${botOptions.prePrompt}`,
-                }),
-                textTitle,
-                textIntro,
-                thesisTexts: thesisTexts.map((thesis: any, idx: number) =>
-                    TextThesis.create({
-                        order: idx,
-                        title: thesis.title,
-                        texts: JSON.stringify(thesis.texts),
-                    })
-                ),
-                faqTexts: FAQTexts.map((faq: any, idx: number) =>
-                    TextFAQ.create({
-                        order: idx,
-                        question: faq.question,
-                        answer: faq.answer,
-                    })
-                ),
-            });
-            await employer.save();
-        });
-    } catch (error) {
-        console.error("Error seeding data:", error);
-    }
+      const employer = Employer.create({
+        subdomain,
+        name,
+        style: JSON.stringify({
+          primaryColor: style.primaryColor,
+          onPrimaryColor: style.onPrimaryColor,
+        }),
+        candidate: JSON.stringify({
+          name: candidate.name,
+          socials: candidate.socials,
+        }),
+        botOptions: JSON.stringify({
+          name: botOptions.name,
+          completePrePrompt: `${botOptions.prePromptStatic} ${botOptions.prePrompt}`,
+        }),
+        textTitle,
+        textIntro,
+        thesisTexts: JSON.stringify(thesisTexts.map((thesis: any, idx: number) => ({ ...thesis, order: idx }))),
+        faqTexts: JSON.stringify(faqTexts.map((faq: any, idx: number) => ({ ...faq, order: idx }))),
+      });
+      await employer.save();
+    });
+  } catch (error) {
+    console.error("Error seeding data:", error);
+  }
 };

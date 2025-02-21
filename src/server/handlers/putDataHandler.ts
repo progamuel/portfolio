@@ -1,0 +1,49 @@
+import { Request, Response } from 'express';
+import { Employer } from '../entity/Employer';
+import { Equal } from 'typeorm';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const { PASSWORD } = process.env;
+
+export const putDataHandler = async (req: Request, res: Response) => {
+  try {
+    const {
+      subdomain,
+      name,
+      candidate,
+      botOptions,
+      textTitle,
+      textIntro,
+      thesisTexts,
+      faqTexts,
+      password
+    } = req.body;
+
+    if (password !== PASSWORD) {
+      throw new Error("Invalid password");
+    }
+
+    const employer = await Employer.findOne({ where: { subdomain: Equal(subdomain) } });
+
+    if (!employer) {
+      throw new Error("Invalid employer");
+    }
+
+    employer.name = name;
+    employer.candidate = JSON.stringify(candidate);
+    employer.botOptions = JSON.stringify(botOptions);
+    employer.textTitle = textTitle;
+    employer.textIntro = textIntro;
+    employer.thesisTexts = JSON.stringify(thesisTexts);
+    employer.faqTexts = JSON.stringify(faqTexts);
+
+    await employer.save();
+
+    res.status(200);
+  } catch (error) {
+    console.error(error);
+    res.status(400);
+  }
+}

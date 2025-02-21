@@ -1,7 +1,7 @@
 export const LoadingComponent = () => {
-    return (
-        <div className="Loading" >
-            <p>Loading...</p>
-        </div>
-    );
+  return (
+    <div className="Loading" >
+      <p>Loading...</p>
+    </div>
+  );
 };

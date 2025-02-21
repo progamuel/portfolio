@@ -27,7 +27,7 @@ const postgresOptions: DataSourceOptions = {
     password: DB_PASSWORD,
     synchronize: false,
     logging: false,
-    dropSchema: NODE_ENV !== 'local' && false,
+    dropSchema: false,
     entities: entitiesPaths,
     migrations: migrationsPaths,
     ssl: NODE_ENV !== 'local' && {

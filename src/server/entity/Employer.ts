@@ -3,13 +3,7 @@ import {
     Column,
     BaseEntity,
     PrimaryGeneratedColumn,
-    OneToMany,
-    OneToOne,
-    JoinColumn,
 } from 'typeorm';
-import { TextThesis } from './TextThesis';
-import { TextFAQ } from './TextFAQ';
-import { Candidate } from './Candidate';
 
 @Entity()
 export class Employer extends BaseEntity {
@@ -22,8 +16,8 @@ export class Employer extends BaseEntity {
     @Column({ nullable: true })
     name?: string;
 
-    @Column({ nullable: true })
-    botOptions?: string;
+    @Column('json', { nullable: true })
+    style?: string;
 
     @Column({ nullable: true })
     textTitle?: string;
@@ -31,13 +25,15 @@ export class Employer extends BaseEntity {
     @Column({ nullable: true })
     textIntro?: string;
 
-    @OneToOne(() => Candidate, candidate => candidate.employer, { cascade: true })
-    @JoinColumn()
-    candidate?: Candidate;
+    @Column('json', { nullable: true })
+    botOptions?: string;
 
-    @OneToMany(() => TextThesis, textThesis => textThesis.employer, { cascade: true })
-    thesisTexts?: TextThesis[];
+    @Column('json', { nullable: true })
+    candidate?: string;
 
-    @OneToMany(() => TextFAQ, textFAQ => textFAQ.employer, { cascade: true })
-    faqTexts?: TextFAQ[];
+    @Column('json', { nullable: true })
+    thesisTexts?: string;
+
+    @Column('json', { nullable: true })
+    faqTexts?: string;
 }

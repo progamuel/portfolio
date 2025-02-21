@@ -1,0 +1,110 @@
+.HomePage {
+  .home__header {
+    background-color: #1c1c1c;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile__link {
+    align-self: center;
+    margin-top: 3.5rem;
+    border-radius: 50%;
+  }
+
+  .profile__link:hover {
+    cursor: normal;
+  }
+
+  .profile__img {
+    border: 3px solid white;
+    width: 150;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .links {
+    right: 0;
+    top: 0;
+    width: 100%;
+    justify-content: space-evenly;
+    position: absolute;
+    font-size: .85rem;
+  }
+
+  .links a {
+    color: white;
+    margin: 1rem 0 0 0;
+  }
+
+  .chart {
+    padding-top: 2rem;
+    margin: 1em 0;
+    background-color: #1c1c1c;
+    width: 100vw;
+    height: 300px;
+    color: #aaa;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+  }
+
+  .thesis {
+    padding: 1.25em 0;
+    background-color: #181818;
+    align-items: center;
+  }
+
+  .thesis__wrapper {
+    align-items: center;
+    width: 100%;
+  }
+
+  .thesis__text>b,
+  .thesis__text>p {
+    width: 100%;
+  }
+
+  .thesis__text {
+    width: 80%;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .thesis__text span,
+  .thesis__text li {
+    margin-top: 0.5em;
+  }
+
+  .thesis h1 {
+    font-size: 1.5rem;
+    margin-bottom: .5em;
+  }
+
+  @media screen and (min-width: 320px) {
+    .thesis__text>h1 {
+      font-size: 2rem;
+    }
+  }
+
+  @media screen and (min-width: 720px) {
+
+    .thesis__text {
+      width: 60%;
+    }
+
+    .chart {
+      width: 60vw;
+    }
+
+    .links {
+      justify-content: flex-end;
+    }
+
+    .links a {
+      margin: 1rem 2rem 0 0;
+      text-decoration: none;
+    }
+  }
+}
