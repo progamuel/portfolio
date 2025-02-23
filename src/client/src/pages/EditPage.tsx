@@ -107,6 +107,24 @@ const EditPage = () => {
         </div>
 
         <div className="form__section">
+          <h5>Style</h5>
+          <div className="form__section__inner">
+            <label>Primary Color:</label>
+            <textarea
+              value={employerData.style.primaryColor}
+              onChange={(e) => handleChange(e, ['style', 'primaryColor'])}
+            />
+          </div>
+          <div className="form__section__inner">
+            <label>On Primary Color:</label>
+            <textarea
+              value={employerData.style.onPrimaryColor}
+              onChange={(e) => handleChange(e, ['style', 'onPrimaryColor'])}
+            />
+          </div>
+        </div>
+
+        <div className="form__section">
           <h5>Candidate</h5>
           <div className="form__section__inner">
             <label>Candidate Name:</label>

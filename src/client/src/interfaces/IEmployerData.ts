@@ -3,8 +3,10 @@ import { IGraphData } from "./IGraphData";
 export interface IEmployerData {
   subdomain: string;
   name: string;
-  primaryColor: string;
-  onPrimaryColor: string;
+  style: {
+    primaryColor: string;
+    onPrimaryColor: string;
+  };
   candidate: {
     name: string;
     socials: {

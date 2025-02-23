@@ -15,8 +15,6 @@ const CreatePage = () => {
         })
       });
       form.reset();
-
-      console.log(response);
       alert(response.ok ? "Employer created successfully!" : "Failed to create employer");
     } catch (error) {
       console.error(error);

@@ -8,8 +8,10 @@ export const getEmployerHandler = async (_req: Request, res: Response) => {
     res.status(200).json({
       subdomain,
       name,
-      primaryColor,
-      onPrimaryColor,
+      style: {
+        primaryColor,
+        onPrimaryColor
+      },
       candidate: JSON.parse(candidate),
       botOptions: JSON.parse(botOptions),
       textTitle,

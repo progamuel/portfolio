@@ -12,6 +12,7 @@ export const updateEmployerHandler = async (req: Request, res: Response) => {
     const {
       subdomain,
       name,
+      style,
       candidate,
       botOptions,
       textTitle,
@@ -32,6 +33,7 @@ export const updateEmployerHandler = async (req: Request, res: Response) => {
     }
 
     employer.name = name;
+    employer.style = JSON.stringify(style);
     employer.candidate = JSON.stringify(candidate);
     employer.botOptions = JSON.stringify(botOptions);
     employer.textTitle = textTitle;

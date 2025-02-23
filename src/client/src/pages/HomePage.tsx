@@ -41,7 +41,7 @@ const HomePage = () => {
           {employerData?.candidate.socials.map((social, idx: number) => <a key={idx} rel="noreferrer" href={social.link} target="_blank">{social.title}</a>)}
         </div>
         <a className="profile__link">
-          <img className="profile__img" src="profile.jpg" alt="profile" />
+          <img className="profile__img" src="profile.jpg" alt="profile" style={{borderColor: isInit ? employerData.style.primaryColor : "white" }}/>
         </a>
       </div>
       <ChatComponent employerData={employerData}/>

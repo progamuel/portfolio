@@ -50,7 +50,7 @@ const ChatComponent = ({ employerData }: { employerData: IEmployerData }) => {
         setConvo(data.convo);
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error(error);
     } finally {
       setIsButtonDisabled(false);
       setMessage("");
@@ -85,7 +85,10 @@ const ChatComponent = ({ employerData }: { employerData: IEmployerData }) => {
           className="chat__btn"
           type="submit"
           disabled={isAnimating || isButtonDisabled}
-          style={{backgroundColor: (isAnimating || isButtonDisabled) ? "#ccc" : employerData.primaryColor}}
+          style={{
+            backgroundColor: (isAnimating || isButtonDisabled) ? "#ccc" : employerData.style.primaryColor,
+            color: (isAnimating || isButtonDisabled) ? "white" : employerData.style.onPrimaryColor,
+          }}
         >
           Send
         </button>
