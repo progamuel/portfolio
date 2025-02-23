@@ -12,7 +12,7 @@ const HomePage = () => {
   const [isInit, setIsInit] = useState<boolean>(false);
 
   const fetchData = async (): Promise<IEmployerData> => {
-    const response = await fetch('/api/v1/data');
+    const response = await fetch('/api/v1/employer');
     const data = await response.json();
     setEmployerData(data);
     return data;
@@ -83,4 +83,4 @@ const HomePage = () => {
   );
 }
 
-export default HomePage;
+export {HomePage};

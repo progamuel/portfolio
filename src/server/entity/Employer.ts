@@ -10,6 +10,9 @@ export class Employer extends BaseEntity {
     @PrimaryGeneratedColumn('uuid')
     id!: string;
 
+    @Column('timestamp', { default: new Date().toISOString() })
+    createdAt?: string;
+
     @Column({ nullable: true })
     subdomain?: string;
 

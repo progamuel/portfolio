@@ -9,7 +9,7 @@ const EditPage = () => {
   const [isInit, setIsInit] = useState<boolean>(false);
 
   const fetchData = async (): Promise<IEmployerData> => {
-    const response = await fetch('/api/v1/data');
+    const response = await fetch('/api/v1/employer');
     const data = await response.json();
     setEmployerData(data);
     return data;
@@ -65,12 +65,12 @@ const EditPage = () => {
     const password = form.password.value;
     form.reset();
     try {
-      const response = await fetch('/api/v1/data', {
+      const response = await fetch('/api/v1/employer', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...employerData, password }),
       });
-      alert(response.ok ? "Data updated successfully!" : "Failed to update data.");
+      alert(response.ok ? "Employer updated successfully!" : "Failed to update employer.");
     } catch (error) {
       console.error(error);
       alert("Error submitting data.");
@@ -81,7 +81,7 @@ const EditPage = () => {
     <main className="flex-col EditPage">
       <form id="edit-form" onSubmit={handleSubmit} className="flex-col">
         <div className="form__header">
-          <h2>{employerData.subdomain}</h2>
+          <h2>Editing {employerData.subdomain}</h2>
           <div className="form__header__inner">
             <input type="password" name="password" placeholder="Password" required/>
             <button type="submit">Update</button>
@@ -251,4 +251,4 @@ const EditPage = () => {
   );
 };
 
-export default EditPage;
+export {EditPage};

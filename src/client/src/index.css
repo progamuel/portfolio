@@ -38,6 +38,17 @@ div.Error {
   width: 100%;
 }
 
+form button {
+  border: none;
+  font-weight: bold;
+}
+
+form button:hover {
+  cursor: pointer;
+  opacity: 0.9;
+  transition: 300ms;
+}
+
 /* utility */
 .flex-row {
   display: flex;

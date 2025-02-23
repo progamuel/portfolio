@@ -1,9 +1,9 @@
 import dotenv from "dotenv";
 import OpenAI from "openai";
 import { Request, Response } from 'express';
-import { IMessage } from '../interfaces/IMessage';
+import { IMessage } from '../../interfaces/IMessage';
 import { ChatCompletionMessageParam } from "openai/resources";
-import { IBotOptions } from "../interfaces/IBotOptions";
+import { IBotOptions } from "../../interfaces/IBotOptions";
 
 dotenv.config();
 

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-export const getDataHandler = async (_req: Request, res: Response) => {
+export const getEmployerHandler = async (_req: Request, res: Response) => {
   try {
     const { subdomain, name, style, candidate, botOptions, textTitle, textIntro, thesisTexts, faqTexts } = res.locals.employer;
     const { primaryColor, onPrimaryColor } = JSON.parse(style);
@@ -23,6 +23,6 @@ export const getDataHandler = async (_req: Request, res: Response) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(400);
+    res.status(400).json({ error: "An error has occured" })
   }
 }

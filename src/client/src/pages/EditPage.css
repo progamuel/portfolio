@@ -51,6 +51,7 @@
     max-width: 100%;
     min-width: 100%;
     min-height: 70px;
+    border-radius: 5px;
   }
 
   .form__section__inner>textarea:first-of-type {
@@ -78,21 +79,11 @@
     width: unset;
   }
 
-  form button {
-    font-weight: bold;
-    border: none;
-  }
-
   form button[type="submit"] {
     padding: 1em .5em;
     color: black;
     border-radius: 5px;
-    border: none;
     background-color: greenyellow;
-  }
-
-  form button:hover {
-    cursor: pointer;
   }
 
   input[type="password"] {

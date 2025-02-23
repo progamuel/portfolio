@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Employer } from '../entity/Employer';
+import { Employer } from '../../entity/Employer';
 import { Equal } from 'typeorm';
 import dotenv from 'dotenv';
 
@@ -7,7 +7,7 @@ dotenv.config();
 
 const { PASSWORD } = process.env;
 
-export const putDataHandler = async (req: Request, res: Response) => {
+export const updateEmployerHandler = async (req: Request, res: Response) => {
   try {
     const {
       subdomain,
@@ -41,9 +41,9 @@ export const putDataHandler = async (req: Request, res: Response) => {
 
     await employer.save();
 
-    res.status(200);
+    res.status(200).json({})
   } catch (error) {
     console.error(error);
-    res.status(400);
+    res.status(400).json({ error: "An error has occured" })
   }
 }
