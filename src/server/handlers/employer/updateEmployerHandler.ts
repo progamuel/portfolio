@@ -17,7 +17,9 @@ export const updateEmployerHandler = async (req: Request, res: Response) => {
       botOptions,
       textTitle,
       textIntro,
+      textGraph,
       thesisTexts,
+      projects,
       faqTexts,
       password
     } = req.body;
@@ -38,7 +40,9 @@ export const updateEmployerHandler = async (req: Request, res: Response) => {
     employer.botOptions = JSON.stringify(botOptions);
     employer.textTitle = textTitle;
     employer.textIntro = textIntro;
+    employer.textGraph = textGraph;
     employer.thesisTexts = JSON.stringify(thesisTexts);
+    employer.projects = JSON.stringify(projects);
     employer.faqTexts = JSON.stringify(faqTexts);
 
     await employer.save();

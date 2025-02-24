@@ -28,12 +28,9 @@ export const subDomainMiddleware = async (req: Request, res: Response, next: Nex
     }
 
     const subdomains = host.replace(/:\d+$/, '').split('.');
+    const hasSubdomain = (subdomains[0].toString() != 'localhost') && (subdomains[0].toString() != 'www');
 
-    if (subdomains.length === 0 || !subdomains[0]) {
-      return next(new Error("Invalid origin format or missing subdomain"));
-    }
-
-    const employer = await Employer.findOne({ where: { subdomain: Equal(subdomains[0]) } });
+    const employer = await Employer.findOne({ where: { subdomain: Equal(hasSubdomain ? subdomains[0] : 'base') } });
 
     if (!employer || !employer.candidate) {
       throw Error("Invalid employer");

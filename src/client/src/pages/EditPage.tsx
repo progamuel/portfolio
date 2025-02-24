@@ -133,6 +133,13 @@ const EditPage = () => {
               onChange={(e) => handleChange(e, ['candidate', 'name'])}
             />
           </div>
+          <div className="form__section__inner">
+            <label>Profile URL:</label>
+            <textarea
+              value={employerData.candidate.profileUrl}
+              onChange={(e) => handleChange(e, ['candidate', 'profileUrl'])}
+            />
+          </div>
           {employerData.candidate.socials.map((social, index) => (
             <div key={index} className="form__section__inner">
               <div className="form__section__header">
@@ -181,7 +188,6 @@ const EditPage = () => {
             />
           </div>
         </div>
-
         <div className="form__section">
           <h5>Text Content</h5>
           <div className="form__section__inner">
@@ -194,6 +200,17 @@ const EditPage = () => {
             <textarea
               value={employerData.textIntro}
               onChange={(e) => handleChange(e, ['textIntro'])}
+            />
+          </div>
+        </div>
+
+        <div className="form__section">
+          <h5>Graph Content</h5>
+          <div className="form__section__inner">
+            <label>Text Graph:</label>
+            <textarea
+              value={employerData.textGraph}
+              onChange={(e) => handleChange(e, ['textGraph'])}
             />
           </div>
         </div>
@@ -213,24 +230,52 @@ const EditPage = () => {
                 value={thesis.title}
                 onChange={(e) => handleChange(e, ['thesisTexts', index, 'title'])}
               />
-              <label>Thesis Texts (each on a new line):</label>
+              <label>Thesis Text:</label>
               <textarea
-                value={thesis.texts.join("\n\n# ")}
-                onChange={(e) => handleChange(
-                  e,
-                  ['thesisTexts', index, 'texts'],
-                  (val) =>
-                    val.split("\n\n# ").map(line => line.trim()).filter(line => line)
-                )}
+                value={thesis.text}
+                onChange={(e) => handleChange(e, ['thesisTexts', index, 'text'])}
               />
             </div>
           ))}
           <button type="button" className="add-btn" onClick={() => {
-            const newThesis = { title: "", texts: [] };
-            setEmployerData({
-              ...employerData,
-              thesisTexts: [...employerData.thesisTexts, newThesis],
-            });
+            const newThesis = { order: employerData.thesisTexts.length, title: "", text: "" };
+            setEmployerData({...employerData, thesisTexts: [...employerData.thesisTexts, newThesis]});
+          }}>Add New</button>
+        </div>
+
+        <div className="form__section">
+          <h5>Projects</h5>
+          {employerData?.projects.map((project, index) => (
+            <div key={index}>
+              <div className="form__section__inner">
+                <div className="form__section__header">
+                  <label>Project Title:</label>
+                  <button type="button" className="delete-btn" onClick={() => {
+                    const newThesis = employerData.projects.filter((_, idx) => idx !== index);
+                    setEmployerData({ ...employerData, projects: newThesis });
+                  }}>Remove</button>
+                </div>
+                <textarea
+                  value={project.title}
+                  onChange={(e) => handleChange(e, ['projects', index, 'title'])}
+                />
+                <label>Img URL:</label>
+                <textarea
+                  style={{minHeight: "unset"}}
+                  value={project.imgUrl}
+                  onChange={(e) => handleChange(e, ['projects', index, 'imgUrl'])}
+                />
+                <label>Project Text:</label>
+                <textarea
+                  value={project.text}
+                  onChange={(e) => handleChange(e, ['projects', index, 'text'])}
+                />
+              </div>
+            </div>
+          ))}
+          <button type="button" className="add-btn" onClick={() => {
+            const newProject = { order: employerData.thesisTexts.length, imgUrl: "", title: "", text: "" };
+            setEmployerData({...employerData, projects: [...employerData.projects, newProject]});
           }}>Add New</button>
         </div>
 
@@ -258,10 +303,7 @@ const EditPage = () => {
           ))}
           <button type="button" className="add-btn" onClick={() => {
             const newFaq = { order: employerData.faqTexts.length, question: "", answer: "" };
-            setEmployerData({
-              ...employerData,
-              faqTexts: [...employerData.faqTexts, newFaq],
-            });
+            setEmployerData({...employerData, faqTexts: [...employerData.faqTexts, newFaq]});
           }}>Add New</button>
         </div>
       </form>

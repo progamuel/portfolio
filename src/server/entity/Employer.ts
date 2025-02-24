@@ -28,6 +28,9 @@ export class Employer extends BaseEntity {
     @Column({ nullable: true })
     textIntro?: string;
 
+    @Column({ nullable: true })
+    textGraph?: string;
+    
     @Column('json', { nullable: true })
     botOptions?: string;
 
@@ -38,5 +41,9 @@ export class Employer extends BaseEntity {
     thesisTexts?: string;
 
     @Column('json', { nullable: true })
+    projects?: string;
+
+    @Column('json', { nullable: true })
     faqTexts?: string;
+
 }

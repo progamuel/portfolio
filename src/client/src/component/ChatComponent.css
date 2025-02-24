@@ -25,6 +25,7 @@
     border-radius: 5px;
     border: none;
     font-weight: bold;
+    transition: 300ms;
   }
 
   .chat__convo {
@@ -64,7 +65,6 @@
 
   .chat__btn:hover {
     transform: scale(1.05);
-    transition: 300ms;
   }
 
   .chat__btn:disabled {

@@ -4,7 +4,6 @@ import { ChatComponent } from "../component/ChatComponent";
 import { IEmployerData } from "../interfaces/IEmployerData";
 import { LoadingComponent } from "../component/LoadingComponent";
 import { ErrorComponent } from "../component/ErrorComponent";
-import { IMessage } from "../interfaces/IMessage";
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -41,34 +40,54 @@ const HomePage = () => {
           {employerData?.candidate.socials.map((social, idx: number) => <a key={idx} rel="noreferrer" href={social.link} target="_blank">{social.title}</a>)}
         </div>
         <a className="profile__link">
-          <img className="profile__img" src="profile.jpg" alt="profile" style={{borderColor: isInit ? employerData.style.primaryColor : "white" }}/>
+          <img className="profile__img" src={employerData?.candidate.profileUrl} alt="profile" style={{borderColor: isInit ? employerData.style.primaryColor : "white" }}/>
         </a>
       </div>
       <ChatComponent employerData={employerData}/>
       <section className="thesis flex-col">
         <div className="thesis__text">
           <h1>{employerData?.textTitle}</h1>
-          <p>
-            {employerData?.textIntro}
-          </p>
-          <hr></hr>
+          <p>{employerData?.textIntro}</p>
         </div>
+        <div className="chart flex-col">
+            <b>{employerData?.textGraph}</b>
+            {<PieChartComponent data={employerData?.graphData} />}
+          </div>
         {employerData?.thesisTexts.map((thesis, idx) => {
           return <div key={idx} className="thesis__wrapper flex-col">
-            {idx === 1 && (
-              <div key={idx} className="chart flex-col">
-                <b>Should {employerData?.candidate.name} work at {employerData.name}?</b>
-                {<PieChartComponent data={employerData?.graphData} />}
-              </div>
-            )}
             <div className="thesis__text">
               <b>{thesis.title}</b>
-              {thesis.texts.map((text, textIdx) => <p key={textIdx}>{text}</p>)}
+              <p>{thesis.text}</p>
             </div>
           </div>
         })}
+
+        {employerData?.projects.length ? (
+          <div className="projects">
+            <div className="thesis__text">
+              <h1>Project Showcase:</h1>
+            </div>
+            <div className="projects__grid">
+            {employerData?.projects.map((project, idx) => (
+              <div key={idx} className="project flex-col">
+                <div className="project__overlay">
+                  <div className="project__text">
+                    <b>{project.title}</b>
+                    <p>{project.text}</p>
+                  </div>
+                </div>
+                <img className="project__img" src={project.imgUrl} alt="project" />
+              </div>
+            ))}
+            </div>
+          </div>
+        ) :
+          <div className="thesis__text">
+            <hr></hr>
+          </div>
+        }
+
         <div className="thesis__text">
-          <hr></hr>
           <h1>Frequently Asked Questions:</h1>
         </div>
         {employerData?.faqTexts.map((faq, idx) => (

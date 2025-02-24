@@ -9,6 +9,7 @@ export interface IEmployerData {
   };
   candidate: {
     name: string;
+    profileUrl: string;
     socials: {
       title: string;
       link: string;
@@ -20,9 +21,15 @@ export interface IEmployerData {
   };
   textTitle: string;
   textIntro: string;
+  textGraph: string;
   thesisTexts: {
     title: string;
-    texts: string[];
+    text: string;
+  }[];
+  projects: {
+    title: string;
+    text: string;
+    imgUrl: string;
   }[];
   faqTexts: {
     question: string;
