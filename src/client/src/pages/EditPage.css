@@ -86,6 +86,13 @@
     background-color: greenyellow;
   }
 
+  form button.delete-employer-btn {
+    padding: 1em .5em;
+    color: black;
+    border-radius: 5px;
+    background-color: lightcoral;
+  }
+
   input[type="password"] {
     background-color: #eee;
     border: none;

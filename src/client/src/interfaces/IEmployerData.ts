@@ -22,6 +22,14 @@ export interface IEmployerData {
   textTitle: string;
   textIntro: string;
   textGraph: string;
+  skills: {
+    languages: string[];
+    frameworks: string[];
+    databases: string[];
+    tools: string[];
+    platforms: string[];
+    other: string[];
+  };
   thesisTexts: {
     title: string;
     text: string;

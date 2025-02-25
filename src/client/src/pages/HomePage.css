@@ -1,4 +1,9 @@
 .HomePage {
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: .5em;
+  }
+
   .home__header {
     background-color: #1c1c1c;
     display: flex;
@@ -49,6 +54,56 @@
     align-items: center;
     justify-content: center;
     border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .skills {
+    align-items: center;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    background-color: #1c1c1c;
+    border-radius: 5px;
+    padding: 1em;
+    box-sizing: border-box;
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+  }
+
+  .skills__grid {
+    gap: 1em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .skills__outer__container {
+    color: #aaa;
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+  }
+
+  .skills__inner__container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: .25em;
+  }
+
+  .skill {
+    border-radius: 5px;
+    font-size: .85rem;
+    opacity: .75;
+    white-space: nowrap;
+    background-color: #ccc;
+    color: black;
+    padding: .2em 0.4em;
+    transition: 300ms;
+  }
+
+  .skill:hover {
+    opacity: 0.9;
+    cursor: default;
   }
 
   .thesis {
@@ -78,28 +133,23 @@
     margin-top: 0.5em;
   }
 
-  .thesis h1 {
-    font-size: 1.5rem;
-    margin-bottom: .5em;
-  }
-
   .projects {
-    margin: 1.5em 0 .5em 0;
+    margin: 2em 0 .5em 0;
     color: black;
     align-items: center;
     display: flex;
     flex-direction: column;
     color: white;
     background-color: #1c1c1c;
-    width: 100vw;
+    width: 100%;
     border-radius: 5px;
     padding: 2em 0;
     box-sizing: border-box;
   }
 
-  .projects h1 {
-    margin-top: 0;
-    text-align: center;
+  .projects>b {
+    color: #aaa;
+    margin-bottom: 1em;
   }
 
   .projects__grid {
@@ -118,6 +168,7 @@
     aspect-ratio: 16/9;
     width: 100%;
     position: relative;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
   }
 
   .project__overlay {
@@ -146,7 +197,7 @@
   }
 
   @media screen and (min-width: 320px) {
-    .thesis__text>h1 {
+    h1 {
       font-size: 2rem;
     }
   }
@@ -158,6 +209,7 @@
       width: 60%;
     }
 
+    .skills,
     .chart {
       width: 60vw;
     }

@@ -18,6 +18,7 @@ export const updateEmployerHandler = async (req: Request, res: Response) => {
       textTitle,
       textIntro,
       textGraph,
+      skills,
       thesisTexts,
       projects,
       faqTexts,
@@ -34,6 +35,7 @@ export const updateEmployerHandler = async (req: Request, res: Response) => {
       throw new Error("Invalid employer");
     }
 
+
     employer.name = name;
     employer.style = JSON.stringify(style);
     employer.candidate = JSON.stringify(candidate);
@@ -41,6 +43,7 @@ export const updateEmployerHandler = async (req: Request, res: Response) => {
     employer.textTitle = textTitle;
     employer.textIntro = textIntro;
     employer.textGraph = textGraph;
+    employer.skills = JSON.stringify(skills);
     employer.thesisTexts = JSON.stringify(thesisTexts);
     employer.projects = JSON.stringify(projects);
     employer.faqTexts = JSON.stringify(faqTexts);

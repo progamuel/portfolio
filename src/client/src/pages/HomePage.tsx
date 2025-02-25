@@ -50,9 +50,10 @@ const HomePage = () => {
           <p>{employerData?.textIntro}</p>
         </div>
         <div className="chart flex-col">
-            <b>{employerData?.textGraph}</b>
-            {<PieChartComponent data={employerData?.graphData} />}
-          </div>
+          <b>{employerData?.textGraph}</b>
+          {<PieChartComponent data={employerData?.graphData} />}
+        </div>
+
         {employerData?.thesisTexts.map((thesis, idx) => {
           return <div key={idx} className="thesis__wrapper flex-col">
             <div className="thesis__text">
@@ -62,11 +63,92 @@ const HomePage = () => {
           </div>
         })}
 
+        <div className="skills">
+          <div className="skills__grid">
+            <div className="skills__outer__container">
+              <b>Languages:</b>
+              <div className="skills__inner__container">
+                {employerData?.skills.languages.map((language, idx) => {
+                  return <span className="skill"
+                    style={{
+                      backgroundColor: employerData.style.primaryColor,
+                      color: employerData.style.onPrimaryColor
+                    }}
+                    key={idx}>{language}</span>;
+                })}
+              </div>
+            </div>
+            <div className="skills__outer__container">
+              <b>Frameworks:</b>
+              <div className="skills__inner__container">
+                {employerData?.skills.frameworks.map((framework, idx) => {
+                  return <span className="skill"
+                    style={{
+                      backgroundColor: employerData.style.primaryColor,
+                      color: employerData.style.onPrimaryColor
+                    }}
+                    key={idx}>{framework}</span>;
+                })}
+              </div>
+            </div>
+            <div className="skills__outer__container">
+              <b>Tools:</b>
+              <div className="skills__inner__container">
+                {employerData?.skills.tools.map((tool, idx) => {
+                  return <span className="skill"
+                    style={{
+                      backgroundColor: employerData.style.primaryColor,
+                      color: employerData.style.onPrimaryColor
+                    }}
+                    key={idx}>{tool}</span>;
+                })}
+              </div>
+            </div>
+            <div className="skills__outer__container">
+              <b>Databases:</b>
+              <div className="skills__inner__container">
+                {employerData?.skills.databases.map((database, idx) => {
+                  return <span className="skill"
+                    style={{
+                      backgroundColor: employerData.style.primaryColor,
+                      color: employerData.style.onPrimaryColor
+                    }}
+                    key={idx}>{database}</span>;
+                })}
+              </div>
+            </div>
+            <div className="skills__outer__container">
+              <b>Platforms:</b>
+              <div className="skills__inner__container">
+                {employerData?.skills.platforms.map((platform, idx) => {
+                  return <span className="skill"
+                    style={{
+                      backgroundColor: employerData.style.primaryColor,
+                      color: employerData.style.onPrimaryColor
+                    }}
+                    key={idx}>{platform}</span>;
+                })}
+              </div>
+            </div>
+            <div className="skills__outer__container">
+              <b>Other:</b>
+              <div className="skills__inner__container">
+                {employerData?.skills.other.map((other, idx) =>{
+                  return <span className="skill"
+                    style={{
+                      backgroundColor: employerData.style.primaryColor,
+                      color: employerData.style.onPrimaryColor
+                    }}
+                    key={idx}>{other}</span>;
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+        
         {employerData?.projects.length ? (
           <div className="projects">
-            <div className="thesis__text">
-              <h1>Project Showcase:</h1>
-            </div>
+            <b>Projects Showcase:</b>
             <div className="projects__grid">
             {employerData?.projects.map((project, idx) => (
               <div key={idx} className="project flex-col">
@@ -81,11 +163,7 @@ const HomePage = () => {
             ))}
             </div>
           </div>
-        ) :
-          <div className="thesis__text">
-            <hr></hr>
-          </div>
-        }
+        ) : null}
 
         <div className="thesis__text">
           <h1>Frequently Asked Questions:</h1>

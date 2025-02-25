@@ -77,6 +77,24 @@ const EditPage = () => {
     }
   };
 
+  const handleDelete = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const form = document.getElementById("edit-form") as HTMLFormElement;
+    const password = form.password.value;
+    form.reset();
+    try {
+      const response = await fetch('/api/v1/employer', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ subdomain: employerData.subdomain, password }),
+      });
+      alert(response.ok ? "Employer deleted successfully!" : "Failed to delete employer.");
+    } catch (error) {
+      console.error(error);
+      alert("Error submitting data.");
+    }
+  };
+
   return (
     <main className="flex-col EditPage">
       <form id="edit-form" onSubmit={handleSubmit} className="flex-col">
@@ -85,6 +103,7 @@ const EditPage = () => {
           <div className="form__header__inner">
             <input type="password" name="password" placeholder="Password" required/>
             <button type="submit">Update</button>
+            <button className="delete-employer-btn" type="button" onClick={handleDelete}>Delete</button>
           </div>
         </div>
 
@@ -200,6 +219,52 @@ const EditPage = () => {
             <textarea
               value={employerData.textIntro}
               onChange={(e) => handleChange(e, ['textIntro'])}
+            />
+          </div>
+        </div>
+
+        <div className="form__section">
+          <h5>Skills</h5>
+          <div className="form__section__inner">
+            <label>Languages:</label>
+            <textarea
+              value={employerData.skills.languages}
+              onChange={(e) => handleChange(e, ['skills', 'languages'], (val: string) => val.split(','))}
+            />
+          </div>
+          <div className="form__section__inner">
+            <label>Frameworks:</label>
+            <textarea
+              value={employerData.skills.frameworks}
+              onChange={(e) => handleChange(e, ['skills', 'frameworks'], (val: string) => val.split(','))}
+            />
+          </div>
+          <div className="form__section__inner">
+            <label>Databases:</label>
+            <textarea
+              value={employerData.skills.databases}
+              onChange={(e) => handleChange(e, ['skills', 'databases'], (val: string) => val.split(','))}
+            />
+          </div>
+          <div className="form__section__inner">
+            <label>Tools:</label>
+            <textarea
+              value={employerData.skills.tools}
+              onChange={(e) => handleChange(e, ['skills', 'tools'], (val: string) => val.split(','))}
+            />
+          </div>
+          <div className="form__section__inner">
+            <label>Platforms:</label>
+            <textarea
+              value={employerData.skills.platforms}
+              onChange={(e) => handleChange(e, ['skills', 'platforms'], (val: string) => val.split(','))}
+            />
+          </div>
+          <div className="form__section__inner">
+            <label>Other:</label>
+            <textarea
+              value={employerData.skills.other}
+              onChange={(e) => handleChange(e, ['skills', 'other'], (val: string) => val.split(','))}
             />
           </div>
         </div>

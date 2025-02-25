@@ -30,12 +30,15 @@ export class Employer extends BaseEntity {
 
     @Column({ nullable: true })
     textGraph?: string;
-    
+
     @Column('json', { nullable: true })
     botOptions?: string;
 
     @Column('json', { nullable: true })
     candidate?: string;
+
+    @Column('json', { nullable: true })
+    skills?: string;
 
     @Column('json', { nullable: true })
     thesisTexts?: string;
