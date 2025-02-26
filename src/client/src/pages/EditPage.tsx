@@ -309,7 +309,7 @@ const EditPage = () => {
         </div>
 
         <div className="form__section">
-          <h5>Projects</h5>
+          <h5>Projects Showcase</h5>
           {employerData?.projects.map((project, index) => (
             <div key={index}>
               <div className="form__section__inner">

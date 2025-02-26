@@ -148,7 +148,7 @@ const HomePage = () => {
         
         {employerData?.projects.length ? (
           <div className="projects">
-            <b>Projects Showcase:</b>
+            <b>What I'm working on right now:</b>
             <div className="projects__grid">
             {employerData?.projects.map((project, idx) => (
               <div key={idx} className="project flex-col">
