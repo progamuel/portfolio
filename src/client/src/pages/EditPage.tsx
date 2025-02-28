@@ -318,7 +318,7 @@ const EditPage = () => {
             />
           </div>
           <div className="form__section__inner">
-            <label>Text Projects:</label>
+            <label>Project Min Width:</label>
             <textarea
               value={employerData.projectMinWidth}
               onChange={(e) => handleChange(e, ['projectMinWidth'])}
