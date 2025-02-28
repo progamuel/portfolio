@@ -1,5 +1,6 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 const {
@@ -15,8 +16,8 @@ if (!DB_ID || !DB_HOST || !DB_PORT || !DB_USERNAME || !DB_PASSWORD) {
     throw Error("Invalid or missing env variables");
 }
 
-const entitiesPaths = [`${__dirname}/entity/*{.js,.ts}`];
-const migrationsPaths = [`${__dirname}/migration/*{.js,.ts}`];
+const entitiesPaths = [`${__dirname}/server/entity/*{.js,.ts}`];
+const migrationsPaths = [`${__dirname}/server/migration/*{.js,.ts}`];
 
 const postgresOptions: DataSourceOptions = {
     type: 'postgres',
@@ -30,7 +31,7 @@ const postgresOptions: DataSourceOptions = {
     dropSchema: false,
     entities: entitiesPaths,
     migrations: migrationsPaths,
-    ssl: NODE_ENV !== 'local' && {
+    ssl: DB_HOST !== 'localhost' && {
         rejectUnauthorized: false,
     },
 };

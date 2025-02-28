@@ -12,7 +12,7 @@ const ChatComponent = ({ employerData }: { employerData: IEmployerData }) => {
 
   useEffect(() => {
     animateInput(`So, why is ${employerData?.candidate.name} a good fit for ${employerData?.name}?`);
-  }, []);
+  }, [employerData?.candidate.name, employerData?.name]);
 
   const animateInput = (finalText: string, speed = 30) => {
     setIsAnimating(true);
