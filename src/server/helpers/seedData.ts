@@ -10,9 +10,9 @@ export const seedData = async () => {
     const data = JSON.parse(fileContent);
 
     data.forEach(async (employerData: any) => {
-      const { subdomain, name, style, candidate, botOptions, textTitle, textIntro, textGraph, skills, thesisTexts, projects, faqTexts } = employerData;
+      const { subdomain, name, style, candidate, botOptions, textTitle, textIntro, textGraph, textProjects, projectMinWidth, skills, thesisTexts, projects, faqTexts } = employerData;
 
-      if (!subdomain || !name || !style || !candidate || !botOptions || !textTitle || !textIntro || !textGraph || !skills || !thesisTexts || !projects || !faqTexts) {
+      if (!subdomain || !name || !style || !candidate || !botOptions || !textTitle || !textIntro || !textGraph || !textProjects || !skills || !thesisTexts || !projects || !faqTexts) {
         throw new Error("Invalid data format");
       };
 
@@ -41,6 +41,8 @@ export const seedData = async () => {
         textTitle,
         textIntro,
         textGraph,
+        textProjects,
+        projectMinWidth,
         skills: JSON.stringify(skills),
         thesisTexts: JSON.stringify(thesisTexts.map((thesis: any, idx: number) => ({ ...thesis, order: idx }))),
         projects: JSON.stringify(projects.map((project: any, idx: number) => ({ ...project, order: idx }))),

@@ -310,6 +310,20 @@ const EditPage = () => {
 
         <div className="form__section">
           <h5>Projects Showcase</h5>
+          <div className="form__section__inner">
+            <label>Text Projects:</label>
+            <textarea
+              value={employerData.textProjects}
+              onChange={(e) => handleChange(e, ['textProjects'])}
+            />
+          </div>
+          <div className="form__section__inner">
+            <label>Text Projects:</label>
+            <textarea
+              value={employerData.projectMinWidth}
+              onChange={(e) => handleChange(e, ['projectMinWidth'])}
+            />
+          </div>
           {employerData?.projects.map((project, index) => (
             <div key={index}>
               <div className="form__section__inner">

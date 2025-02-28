@@ -10,7 +10,7 @@ export class Employer extends BaseEntity {
     @PrimaryGeneratedColumn('uuid')
     id!: string;
 
-    @Column('timestamp', { default: new Date().toISOString() })
+    @Column('timestamp')
     createdAt?: string;
 
     @Column({ nullable: true })
@@ -30,6 +30,12 @@ export class Employer extends BaseEntity {
 
     @Column({ nullable: true })
     textGraph?: string;
+
+    @Column({ nullable: true })
+    textProjects?: string;
+
+    @Column({ nullable: true })
+    projectMinWidth?: string;
 
     @Column('json', { nullable: true })
     botOptions?: string;

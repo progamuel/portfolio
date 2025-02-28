@@ -148,8 +148,8 @@ const HomePage = () => {
         
         {employerData?.projects.length ? (
           <div className="projects">
-            <b>What I'm working on right now:</b>
-            <div className="projects__grid">
+            {employerData?.textProjects?.length > 0 ? <b>{employerData?.textProjects}</b> : null}
+            <div className="projects__grid" style={{gridTemplateColumns: `repeat(auto-fill, minmax(${employerData?.projectMinWidth}, 1fr))`}}>
             {employerData?.projects.map((project, idx) => (
               <div key={idx} className="project flex-col">
                 <div className="project__overlay">

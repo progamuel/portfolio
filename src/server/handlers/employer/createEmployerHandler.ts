@@ -37,6 +37,7 @@ export const createEmployerHandler = async (req: Request, res: Response) => {
 
     const employer = Employer.create({
       ...templateData,
+      createdAt: new Date().toISOString(),
       subdomain,
     });
 

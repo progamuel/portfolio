@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 export const getEmployerHandler = async (_req: Request, res: Response) => {
   try {
-    const { subdomain, name, style, candidate, botOptions, textTitle, textIntro, textGraph, skills, thesisTexts, projects, faqTexts } = res.locals.employer;
+    const { subdomain, name, style, candidate, botOptions, textTitle, textIntro, textGraph, textProjects, projectMinWidth, skills, thesisTexts, projects, faqTexts } = res.locals.employer;
     const { primaryColor, onPrimaryColor } = JSON.parse(style);
 
     res.status(200).json({
@@ -17,6 +17,8 @@ export const getEmployerHandler = async (_req: Request, res: Response) => {
       textTitle,
       textIntro,
       textGraph,
+      textProjects,
+      projectMinWidth,
       skills: JSON.parse(skills) ?? {
         languages: [],
         frameworks: [],

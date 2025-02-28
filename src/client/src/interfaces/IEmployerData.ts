@@ -22,6 +22,8 @@ export interface IEmployerData {
   textTitle: string;
   textIntro: string;
   textGraph: string;
+  textProjects: string;
+  projectMinWidth: string;
   skills: {
     languages: string[];
     frameworks: string[];

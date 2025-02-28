@@ -18,6 +18,8 @@ export const updateEmployerHandler = async (req: Request, res: Response) => {
       textTitle,
       textIntro,
       textGraph,
+      textProjects,
+      projectMinWidth,
       skills,
       thesisTexts,
       projects,
@@ -43,6 +45,8 @@ export const updateEmployerHandler = async (req: Request, res: Response) => {
     employer.textTitle = textTitle;
     employer.textIntro = textIntro;
     employer.textGraph = textGraph;
+    employer.textProjects = textProjects;
+    employer.projectMinWidth = projectMinWidth;
     employer.skills = JSON.stringify(skills);
     employer.thesisTexts = JSON.stringify(thesisTexts);
     employer.projects = JSON.stringify(projects);
