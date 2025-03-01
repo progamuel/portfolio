@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import path from "path";
 import dotenv from 'dotenv';
 import { apiRouter } from "./index.routes";
-import { dataSource } from "./dataSource";
+import { dataSource } from "../dataSource";
 import { seedData } from "./helpers/seedData";
 import { subDomainMiddleware } from "./middleware/subDomainMiddleware";
 
@@ -17,7 +17,7 @@ if (!OPENAI_API_KEY) {
   throw Error("Invalid or missing env variables")
 }
 
-const clientBuildPath = path.join(__dirname, NODE_ENV === 'local' ? "../../client/build" : "../../../src/client/build");
+const clientBuildPath = path.join(__dirname, "../../client/build");
 
 dataSource.initialize().then(() => {
   app.use(express.static(clientBuildPath));
@@ -30,7 +30,7 @@ dataSource.initialize().then(() => {
     res.sendFile(path.join(clientBuildPath, "index.html"));
   });
 
-  if (NODE_ENV === 'local') {
+  if (NODE_ENV === 'development') {
     seedData();
   }
 
