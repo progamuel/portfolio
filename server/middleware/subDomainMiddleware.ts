@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import { Employer } from "../entity/Employer";
-import { Equal } from "typeorm";
 
 interface IRequest {
   path: string;
@@ -30,7 +29,7 @@ export const subDomainMiddleware = async (req: Request, res: Response, next: Nex
     const subdomains = host.replace(/:\d+$/, '').split('.');
     const hasSubdomain = (subdomains[0].toString() != 'localhost') && (subdomains[0].toString() != 'www');
 
-    const employer = await Employer.findOne({ where: { subdomain: Equal(hasSubdomain ? subdomains[0] : 'base') } });
+    const employer = await Employer.findOne({ where: { subdomain: (hasSubdomain ? subdomains[0] : 'base') } });
 
     if (!employer || !employer.candidate) {
       throw Error("Invalid employer");

@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { Employer } from '../../entity/Employer';
-import { Equal } from 'typeorm';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -15,15 +14,8 @@ export const createEmployerHandler = async (req: Request, res: Response) => {
       throw new Error("Invalid password");
     }
 
-    const employers = await Employer.find({
-      where: [
-        { subdomain: Equal(subdomain) },
-        { subdomain: Equal('xyz') }
-      ]
-    });
-
-    const existingEmployer = employers.find(emp => emp.subdomain === subdomain) || null;
-    const templateEmployer = employers.find(emp => emp.subdomain === 'xyz') || null;
+    const templateEmployer = await Employer.findOneBy({ subdomain: 'xyz' });
+    const existingEmployer = await Employer.findOneBy({ subdomain });
 
     if (existingEmployer) {
       throw new Error("Employer already exists")

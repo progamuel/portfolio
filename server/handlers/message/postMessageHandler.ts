@@ -20,7 +20,7 @@ export const postMessageHandler = async (req: Request, res: Response) => {
       throw Error("Message empty");
     }
 
-    const convo = await _fetchConvo({ message, prevConvo, botOptions: JSON.parse(botOptions) });
+    const convo = await _fetchConvo({ message, prevConvo, botOptions });
     res.status(200).json({ convo });
   } catch (error) {
     console.error(error);

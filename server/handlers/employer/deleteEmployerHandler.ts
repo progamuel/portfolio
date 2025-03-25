@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { Employer } from '../../entity/Employer';
-import { Equal } from 'typeorm';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -15,7 +14,7 @@ export const deleteEmployerHandler = async (req: Request, res: Response) => {
       throw new Error("Invalid password");
     }
 
-    const employer = await Employer.findOne({ where: { subdomain: Equal(subdomain) } });
+    const employer = await Employer.findOne({ where: { subdomain } });
 
     if (!employer) {
       throw new Error("Employer not found")

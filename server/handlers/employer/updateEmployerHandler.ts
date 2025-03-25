@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { Employer } from '../../entity/Employer';
-import { Equal } from 'typeorm';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -31,7 +30,7 @@ export const updateEmployerHandler = async (req: Request, res: Response) => {
       throw new Error("Invalid password");
     }
 
-    const employer = await Employer.findOne({ where: { subdomain: Equal(subdomain) } });
+    const employer = await Employer.findOne({ where: { subdomain } });
 
     if (!employer) {
       throw new Error("Invalid employer");
@@ -39,18 +38,18 @@ export const updateEmployerHandler = async (req: Request, res: Response) => {
 
 
     employer.name = name;
-    employer.style = JSON.stringify(style);
-    employer.candidate = JSON.stringify(candidate);
-    employer.botOptions = JSON.stringify(botOptions);
+    employer.style = style;
+    employer.candidate = candidate;
+    employer.botOptions = botOptions;
     employer.textTitle = textTitle;
     employer.textIntro = textIntro;
     employer.textGraph = textGraph;
     employer.textProjects = textProjects;
     employer.projectMinWidth = projectMinWidth;
-    employer.skills = JSON.stringify(skills);
-    employer.thesisTexts = JSON.stringify(thesisTexts);
-    employer.projects = JSON.stringify(projects);
-    employer.faqTexts = JSON.stringify(faqTexts);
+    employer.skills = skills;
+    employer.thesisTexts = thesisTexts;
+    employer.projects = projects;
+    employer.faqTexts = faqTexts;
 
     await employer.save();
 

@@ -1,7 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
 import { Employer } from "../entity/Employer";
-import { Equal } from "typeorm";
 
 export const seedData = async () => {
   try {
@@ -16,7 +15,7 @@ export const seedData = async () => {
         throw new Error("Invalid data format");
       };
 
-      const existingEmployer = await Employer.findOne({ where: { subdomain: Equal(subdomain) } });
+      const existingEmployer = await Employer.findOne({ where: { subdomain } });
 
       if (existingEmployer) {
         await existingEmployer.remove();
@@ -25,28 +24,28 @@ export const seedData = async () => {
       const employer = Employer.create({
         subdomain,
         name,
-        style: JSON.stringify({
+        style: {
           primaryColor: style.primaryColor,
           onPrimaryColor: style.onPrimaryColor,
-        }),
-        candidate: JSON.stringify({
+        },
+        candidate: {
           profileUrl: candidate.profileUrl,
           name: candidate.name,
           socials: candidate.socials,
-        }),
-        botOptions: JSON.stringify({
+        },
+        botOptions: {
           name: botOptions.name,
           completePrePrompt: `${botOptions.prePromptStatic} ${botOptions.prePrompt}`,
-        }),
+        },
         textTitle,
         textIntro,
         textGraph,
         textProjects,
         projectMinWidth,
-        skills: JSON.stringify(skills),
-        thesisTexts: JSON.stringify(thesisTexts.map((thesis: any, idx: number) => ({ ...thesis, order: idx }))),
-        projects: JSON.stringify(projects.map((project: any, idx: number) => ({ ...project, order: idx }))),
-        faqTexts: JSON.stringify(faqTexts.map((faq: any, idx: number) => ({ ...faq, order: idx }))),
+        skills: skills,
+        thesisTexts: thesisTexts.map((thesis: any, idx: number) => ({ ...thesis, order: idx })),
+        projects: projects.map((project: any, idx: number) => ({ ...project, order: idx })),
+        faqTexts: faqTexts.map((faq: any, idx: number) => ({ ...faq, order: idx })),
       });
       await employer.save();
     });

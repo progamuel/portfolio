@@ -2,16 +2,17 @@ import {
     Entity,
     Column,
     BaseEntity,
-    PrimaryGeneratedColumn,
+    ObjectId,
+    ObjectIdColumn,
 } from 'typeorm';
 
-@Entity()
+@Entity('employers')
 export class Employer extends BaseEntity {
-    @PrimaryGeneratedColumn('uuid')
-    id!: string;
+    @ObjectIdColumn()
+    id!: ObjectId;
 
     @Column('timestamp')
-    createdAt?: string;
+    createdAt?: Date;
 
     @Column({ nullable: true })
     subdomain?: string;
@@ -19,8 +20,8 @@ export class Employer extends BaseEntity {
     @Column({ nullable: true })
     name?: string;
 
-    @Column('json', { nullable: true })
-    style?: string;
+    @Column({ nullable: true })
+    style?: object;
 
     @Column({ nullable: true })
     textTitle?: string;
@@ -37,22 +38,22 @@ export class Employer extends BaseEntity {
     @Column({ nullable: true })
     projectMinWidth?: string;
 
-    @Column('json', { nullable: true })
-    botOptions?: string;
+    @Column({ nullable: true })
+    botOptions?: object;
 
-    @Column('json', { nullable: true })
-    candidate?: string;
+    @Column({ nullable: true })
+    candidate?: object;
 
-    @Column('json', { nullable: true })
-    skills?: string;
+    @Column({ nullable: true })
+    skills?: object;
 
-    @Column('json', { nullable: true })
-    thesisTexts?: string;
+    @Column({ nullable: true })
+    thesisTexts?: object;
 
-    @Column('json', { nullable: true })
-    projects?: string;
+    @Column({ nullable: true })
+    projects?: object;
 
-    @Column('json', { nullable: true })
-    faqTexts?: string;
+    @Column({ nullable: true })
+    faqTexts?: object;
 
 }
